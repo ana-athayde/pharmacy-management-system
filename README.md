@@ -1,79 +1,39 @@
-# Apoteck 2.0 - Projeto Integrador
+# Apoteck 2.0
 
-## Descrição
-O projeto Apoteck 2.0 é um site de uma farmácia fictícia desenvolvido como parte do Projeto Integrador do curso "Técnico em Informática" no IFSC câmpus Lages, apresentado em 2018.
-Aqui, você encontrará informações sobre como configurar, usar e contribuir para o projeto.
-Este projeto foi desenvolvido em conjunto por Ana Athayde e Jaqueline Oliveira Santos.
+Apoteck 2.0 is an academic web project for a fictional pharmacy. It was created in 2018 as part of the Integrative Project for the Technical Program in Informatics at IFSC, Lages campus, by Ana Athayde and Jaqueline Oliveira Santos.
 
-## Estrutura do Repositório
-O repositório está organizado nas seguintes pastas:
+The project contains a Portuguese-language storefront prototype with a home page, product category pages for beauty and protection, cosmetics, and hygiene, plus cart, customer registration, and login pages. PHP model and controller files provide an initial structure for customer and login operations. This is a student project, not a production-ready e-commerce system; some pages and server-side flows are incomplete or depend on the original development environment.
 
-- `controller`: Contém os controladores do projeto.
-- `model`: Contém as classes de modelo do projeto.
-- `view`: Contém as visualizações do projeto.
-  - `html`: Contém os arquivos HTML que compõem as páginas do site.
-    - `clientes`: Páginas relacionadas aos clientes.
-    - `login`: Páginas de login e suporte ao login.
-- `img`: Recursos de imagens utilizados no projeto.
-- `js`: Scripts JavaScript utilizados no projeto.
-- `css`: Estilos CSS utilizados no projeto.
+## Repository Structure
 
-## Estrutura das Classes
+- `controller/`: PHP controllers for customer and login operations.
+- `model/`: Customer and login models, business logic, data access objects, and database connection code.
+- `view/html/`: Storefront pages and customer/login forms and handlers.
+- `view/css/`: Bootstrap and project stylesheets.
+- `view/js/`: Bootstrap, jQuery, Popper, and project scripts.
+- `view/img/`: Images used by the storefront, organized into category folders.
 
-### Model
-- `Cliente.class.php`: Classe para representar um cliente com propriedades como nome, CPF, email, etc.
-- `ClienteBusiness.php`: Lida com as operações de negócios relacionadas aos clientes.
-- `ClienteDAO.class.php`: Realiza operações de banco de dados relacionadas aos clientes.
-- `DBConnection.class.php`: Gerencia a conexão com o banco de dados.
+## Requirements
 
-- `login.class.php`: Classe para representar login com propriedades como ID, login, senha, etc.
-- `loginBusuness.php`: Lida com as operações de negócios relacionadas ao login.
-- `loginDAO.class.php`: Realiza operações de banco de dados relacionadas ao login.
+- PHP with a web server, such as Apache with PHP enabled.
+- MySQL, if you are testing the database-backed parts.
 
-### Controller
-- `ClienteController.class.php`: Controlador para operações relacionadas aos clientes.
-- `loginController.class.php`: Controlador para operações relacionadas ao login.
+The storefront entry point is `view/html/index.php`. Serve the repository through a PHP-enabled web server and open `/view/html/index.php` in a browser. Opening the PHP file directly from the filesystem will not execute it as a website.
 
-### View
-- `html`: Arquivos HTML que compõem as páginas do site.
+## Database and Configuration
 
-## Configuração
+The database connection settings are currently hard-coded in `model/DBConnection.class.php` (`localhost`, database `aluno20`, user `aluno20`, password `aluno`, and port `3306`). Update these values for your local MySQL setup before using code that connects to the database. The repository does not include a database schema or seed data, so the required tables must be created separately.
 
-### Banco de Dados
-- O projeto utiliza um banco de dados MySQL. Certifique-se de ter um servidor MySQL em execução e crie um banco de dados com o nome desejado.
+Some PHP files also contain absolute paths tied to the original hosting setup. In addition, the legacy login handler in `view/html/login/suporte_login.php` uses the removed `mysql_*` PHP extension and must be updated before it can run on modern PHP versions. Customer registration and login should therefore be treated as unfinished and may require environment-specific changes.
 
-#### Configuração de Banco de Dados
-- Abra o arquivo `model/DBConnection.class.php`.
-- Configure as informações de conexão com o banco de dados, incluindo host, nome do banco de dados, nome de usuário e senha.
-- Isso garantirá que o projeto possa se conectar ao banco de dados.
+## Project Components
 
-## Uso
+- Customer-related classes: `Cliente.class.php`, `ClienteBusiness.php`, `ClienteDAO.class.php`, and `ClienteController.class.php`.
+- Login-related classes: `login.class.php`, `loginBusuness.php`, `loginDAO.class.php`, and `loginController.class.php`.
+- Shared database connection: `DBConnection.class.php`.
+- Front-end assets: Bootstrap, jQuery, Popper, project CSS, JavaScript, and product images under `view/`.
 
-### Visualização do Site
-- O site é composto por várias páginas HTML localizadas na pasta `view/html`. Abra o arquivo `index.php` para iniciar a navegação no site.
+## Contributing
 
-### Cadastro de Clientes
-- Utilize o formulário presente no site para cadastrar clientes.
-- Os dados dos clientes são armazenados no banco de dados por meio das classes `Cliente.class.php`, `ClienteBusiness.php` e `ClienteDAO.class.php`.
-
-### Login
-- Os usuários podem fazer login por meio das páginas de login e suporte ao login na pasta `view/html/login`.
-- Os dados de login são tratados pelas classes `login.class.php`, `loginBusiness.php` e `loginDAO.class.php.
-
-## Contribuição
-
-Se você deseja contribuir para o projeto "Apoteck 2.0", siga estas etapas:
-
-1. Faça um fork do repositório.
-2. Clone o repositório forked para o seu ambiente de desenvolvimento.
-3. Faça as alterações desejadas e crie um branch para suas modificações.
-4. Faça commit das alterações em seu branch.
-5. Envie um pull request para o repositório original.
-6. Seus pull requests serão revisados e, se aprovados, mesclados ao projeto.
-
-O projeto pode se beneficiar de contribuições relacionadas a correções de bugs, melhorias de código, recursos adicionais ou documentação aprimorada.
-
-Lembre-se de seguir as boas práticas de desenvolvimento, incluir testes, documentar seu código e garantir que suas alterações sejam compatíveis com a estrutura do projeto.
-
-Agradecemos a sua contribuição!
+Contributions such as bug fixes, documentation improvements, and modernization of the PHP/database flows are welcome. Before submitting a change, verify it against the PHP and MySQL versions you intend to support and document any required database setup.
 
